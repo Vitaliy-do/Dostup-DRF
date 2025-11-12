@@ -44,11 +44,13 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         open_count = Advertisement.objects.filter(creator=user, status='OPEN').count()
         new_status = data.get('status')
 
+        # Устранение замечания 2
         # Если объявление открыто и обновление существующего объявления
         # то объявления не учитывается
         if self.instance and self.instance.status == 'OPEN':
             open_count =-1
 
+        # Устранение замечания 2
         # Если равно или больше 10 объявлений и в статусе "открыто"
         if open_count >= 10 and new_status == 'OPEN':
             raise serializers.ValidationError('Максимально допустимое количество: 10.'
