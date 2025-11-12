@@ -1,7 +1,8 @@
 from rest_framework.permissions import BasePermission
 
+# Класс проверки (аутенфикации) владельца объявления
 class IsOwnerOrReadOnly(BasePermission):
     def has_object_permission(self, request, view, obj):
-        return request.user == obj.user
-
+        # Внесено изменение для устранения замечания 1.
+        return request.user == obj.creator
 
